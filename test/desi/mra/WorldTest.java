@@ -41,6 +41,22 @@ public class WorldTest {
         obstacles.add(new Position(0,0));
         obstacles.add(new Position(0,1));
         obstacles.add(new Position(0,2));
+        obstacles.add(new Position(1,0));
+        obstacles.add(new Position(1,1));
+        obstacles.add(new Position(1,2));
+        obstacles.add(new Position(2,0));
+        obstacles.add(new Position(2,1));
+        obstacles.add(new Position(2,2));
+        new World(3,obstacles);
+    }
+
+
+    @Test(expected = WordException.class)
+    public void test_invalid_world_create_too_many_obstacles2() throws WordException {
+        HashSet<Position> obstacles = new HashSet<>();
+        obstacles.add(new Position(0,0));
+        obstacles.add(new Position(0,1));
+        obstacles.add(new Position(0,2));
         obstacles.add(new Position(0,3));
         obstacles.add(new Position(1,0));
         obstacles.add(new Position(1,1));
@@ -63,8 +79,26 @@ public class WorldTest {
         obstacles.add(new Position(0,6));
         obstacles.add(new Position(0,5));
         obstacles.add(new Position(1,1));
+        obstacles.add(new Position(2,0));
         new World(10,obstacles);
     }
+
+    @Test(expected = WordException.class)
+    public void test_invalid_world_create_obstacle_out_of_bound2() throws WordException {
+        HashSet<Position> obstacles = new HashSet<>();
+        obstacles.add(new Position(3,4));
+        obstacles.add(new Position(7,4));
+        obstacles.add(new Position(3,3));
+        obstacles.add(new Position(5,10));
+        obstacles.add(new Position(2,8));
+        obstacles.add(new Position(4,5));
+        obstacles.add(new Position(1,1));
+        obstacles.add(new Position(0,6));
+        obstacles.add(new Position(0,5));
+        obstacles.add(new Position(1,1));
+        new World(10,obstacles);
+    }
+
     @Test(expected = WordException.class)
     public void test_invalid_world_null_obstacle() throws WordException {
         new World(10,null);
